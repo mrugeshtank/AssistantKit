@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         testDeviceType()
         testDeviceOS()
         testCodeExamples()
+        testBatteryState()
     }
 
     override func viewDidLoad() {
@@ -25,6 +26,40 @@ class ViewController: UIViewController {
     }
 
     // MARK: Test logs
+    
+    func testBatteryState() {
+        Device.setBatteryMonitoringEnabled(true)
+        print("Is Battery Charging               " + String(Device.isBatteryCharging))
+        print("Is Battery Full                   " + String(Device.isBatteryFull))
+        print("Is Battery Charging Unplugged     " + String(Device.isBatteryChargingUnplugged))
+        print("Is Battery Battery State Unknown  " + String(Device.isBatteryStateUnknown))
+        print("Battery in %                      " + String(Device.getBatteryPercentage))
+        print("Is Battery Monitoring Enabled     " + String(Device.isBatteryMonitoringEnabled))
+        
+        let lbl1 = UILabel(frame: CGRectMake(0,0,320,30))
+        lbl1.text = "Is Battery Charging               " + String(Device.isBatteryCharging)
+        self.view.addSubview(lbl1)
+        
+        let lbl2 = UILabel(frame: CGRectMake(0,50,320,30))
+        lbl2.text = "Is Battery Full                   " + String(Device.isBatteryFull)
+        self.view.addSubview(lbl2)
+        
+        let lbl3 = UILabel(frame: CGRectMake(0,100,320,30))
+        lbl3.text = "Is Battery Charging Unplugged     " + String(Device.isBatteryChargingUnplugged)
+        self.view.addSubview(lbl3)
+        
+        let lbl4 = UILabel(frame: CGRectMake(0,150,320,30))
+        lbl4.text = "Is Battery Battery State Unknown  " + String(Device.isBatteryStateUnknown)
+        self.view.addSubview(lbl4)
+        
+        let lbl5 = UILabel(frame: CGRectMake(0,200,320,30))
+        lbl5.text = "Battery in %                      " + String(Device.getBatteryPercentage)
+        self.view.addSubview(lbl5)
+        
+        let lbl6 = UILabel(frame: CGRectMake(0,250,320,30))
+        lbl6.text = "Is Battery Monitoring Enabled     " + String(Device.isBatteryMonitoringEnabled)
+        self.view.addSubview(lbl6)
+    }
 
     func testBundleFiles() {
         let file = "file.data"
@@ -35,17 +70,17 @@ class ViewController: UIViewController {
         print("Documents path:  " + String(Bundle.documentsDirectoryPath))
         print("Caches URL:      " + String(Bundle.cachesDirectoryURL))
         print("Caches path:     " + String(Bundle.cachesDirectoryPath))
-        print()
+        print("")
 
         print("Paths for file:  " + file)
         print("Documents:       " + Bundle.filePathInDocumentsDirectory(toFile: file))
         print("Caches:          " + Bundle.filePathInCachesDirectory(toFile: file))
-        print()
+        print("")
 
         print("Paths for file:  " + fileWithPath)
         print("Documents:       " + Bundle.filePathInDocumentsDirectory(toFile: fileWithPath))
         print("Caches:          " + Bundle.filePathInCachesDirectory(toFile: fileWithPath))
-        print()
+        print("")
     }
 
     func testBundleVersions() {
@@ -53,7 +88,7 @@ class ViewController: UIViewController {
         print("Version:         " + Bundle.bundleVersion)
         print("Short version:   " + Bundle.bundleShortVersion)
         print("Identifier:      " + Bundle.bundleIdentifier)
-        print()
+        print("")
     }
 
     func testDeviceScreen() {
@@ -63,7 +98,7 @@ class ViewController: UIViewController {
         print("isRetina:        " + String(Device.isRetina))
         print("isPortrait:      " + String(Device.isPortrait))
         print("isLandscape:     " + String(Device.isLandscape))
-        print()
+        print("")
 
         print("family:          " + String(Device.screen.family.rawValue))
         print("size for device: " + String(Device.size(phone: "phone size", pad: "pad size")))
@@ -77,7 +112,7 @@ class ViewController: UIViewController {
         ]
         let exactSize = Device.size(sizes: sizes) as! Int
         print("exact size:      " + String(exactSize))
-        print()
+        print("")
     }
 
     func testDeviceType() {
@@ -88,7 +123,7 @@ class ViewController: UIViewController {
         print("isPad:           " + String(Device.isPad))
         print("isPadPro:        " + String(Device.isPadPro))
         print("isSimulator:     " + String(Device.isSimulator))
-        print()
+        print("")
     }
 
     func testDeviceOS() {
@@ -102,7 +137,7 @@ class ViewController: UIViewController {
         print("==               " + String(Device.osVersionEqualTo(version)))
         print(">= 9.0           " + String(Device.osVersionEqualTo("9.0")))
         print("<= 9.0           " + String(Device.osVersionEqualTo("9.0")))
-        print()
+        print("")
     }
 
     func testCodeExamples() {
